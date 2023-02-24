@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Welcome rland</h1>
+	<h1>Welcome rland : ${data }</h1>
 </body>
 </html>

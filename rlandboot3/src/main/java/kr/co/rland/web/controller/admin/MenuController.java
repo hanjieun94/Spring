@@ -1,9 +1,15 @@
 package kr.co.rland.web.controller.admin;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 //@RestController("adminMenuController")
 @Controller("adminMenuController")
@@ -13,7 +19,38 @@ public class MenuController {
 //	@RequestMapping("/admin/menu/list")
 //	@RequestMapping("list")
 	@GetMapping("list")
-	public String list() {
+	public String list(
+			@RequestParam(name="p", defaultValue="1") int page,
+			@RequestParam(name="q", required=false) String query,
+			//@RequestParam쓸 경우, 파라미터가 필수적으로 와야한다.
+			
+			//decoding이 안되어서 직접 해야한다. 
+			@CookieValue("my") String myCookie,
+//			HttpServletRequest request) {
+			
+			@RequestHeader("Accept-language") String language 
+			) throws UnsupportedEncodingException {
+
+			System.out.printf("Accept-language :%s/n", language);
+		
+			
+//		String myCookie = "";
+//		Cookie[] cookies = request.getCookies();
+//		for(Cookie cookie : cookies)
+//			if(cookie.getName().equals("my")) {
+//				myCookie = cookie.getValue();
+//				break;
+//			}
+		
+		myCookie = URLDecoder.decode(myCookie, "utf-8");
+		System.out.printf("page:%d, query:%s\n", page, myCookie);
+//		System.out.printf("page: %d\n", page);
+//		for(int i=0; i<page; i++) {
+//			
+//			System.out.print(query);
+//			System.out.println();
+//		}
+		
 		return "/WEB-INF/view/admin/menu/list.jsp";
 	}
 	

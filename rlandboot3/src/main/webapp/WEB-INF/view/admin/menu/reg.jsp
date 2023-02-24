@@ -21,6 +21,19 @@
 				</div>
 			</fieldset>
 		</form>
+		
+		<form action="/upload" method="post" enctype="multipart/form-data"> <!-- binary를 보낸 것이 아니라 문자열을 보낸다. 보낼 때 url로 가능한 녀석만 보내지기 때문에 -->
+			<fieldset>
+				<legend>메뉴 입력 필드</legend>
+				<div>
+					<label>이미지 : </label>
+					<input type="file" name="img">
+				</div>
+				<div>
+					<input type="submit" value="등록">
+				</div>
+			</fieldset>
+		</form>
 	</section>
 </body>
 </html>
